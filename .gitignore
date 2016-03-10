@@ -1,0 +1,7 @@
+.dbuild/pretty/__pycache__/
+build/
+kernel.elf
+kernel.img
+kernel.list
+kernel.map
+kernel.syms
