@@ -33,3 +33,7 @@ kernel.elf: $(OBJECTS)
 .PHONY: emu
 emu: kernel.elf
 	$(QEMU_CMD_LINE) $<
+
+.PHONY: debug-emu
+debug-emu: kernel.elf
+	$(QEMU_DEBUG_LINE) $<
