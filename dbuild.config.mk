@@ -2,7 +2,7 @@
 PLATFORM:=RaspberryPi
 SAMPLE:=Demo
 
-CFLAGS += -march=armv6z -Wall -Wextra -ffreestanding
+CFLAGS += -march=armv6z -Wall -Wextra -ffreestanding -Wno-unused-parameter
 CFLAGS += -I $(BASE)FreeRTOS/Source/portable/GCC/RaspberryPi/
 CFLAGS += -I $(BASE)FreeRTOS/Source/include/
 CFLAGS += -I $(BASE)Platform/$(PLATFORM)/
