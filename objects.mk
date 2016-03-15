@@ -11,12 +11,12 @@ OBJECTS += $(BUILD_DIR)FreeRTOS/Source/croutine.o
 OBJECTS += $(BUILD_DIR)FreeRTOS/Source/list.o
 OBJECTS += $(BUILD_DIR)FreeRTOS/Source/queue.o
 OBJECTS += $(BUILD_DIR)FreeRTOS/Source/tasks.o
-OBJECTS += $(BUILD_DIR)Demo/Drivers/uart.o
+OBJECTS += $(BUILD_DIR)Drivers/uart.o
 #
 #	Interrupt Manager & GPIO Drivers
 #
-OBJECTS += $(BUILD_DIR)Demo/Drivers/interrupts.o
-OBJECTS += $(BUILD_DIR)Demo/Drivers/gpio.o
+OBJECTS += $(BUILD_DIR)Drivers/interrupts.o
+OBJECTS += $(BUILD_DIR)Drivers/gpio.o
 
 $(BUILD_DIR)FreeRTOS/Source/portable/GCC/RaspberryPi/port.o: CFLAGS += -I $(BASE)Demo/
 

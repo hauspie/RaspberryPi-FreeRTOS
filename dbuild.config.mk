@@ -2,7 +2,7 @@
 CFLAGS += -march=armv6z -Wall -Wextra -ffreestanding
 CFLAGS += -I $(BASE)FreeRTOS/Source/portable/GCC/RaspberryPi/
 CFLAGS += -I $(BASE)FreeRTOS/Source/include/
-CFLAGS += -I $(BASE)Demo/Drivers/
+CFLAGS += -I $(BASE)
 CFLAGS += -O0 -g
 
 LDFLAGS += -lc -nostdlib
