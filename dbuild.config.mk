@@ -1,6 +1,6 @@
 # What to build
 PLATFORM:=RaspberryPi
-SAMPLE:=Demo
+SAMPLE:=Benchmarks
 
 CFLAGS += -march=armv6z -Wall -Wextra -ffreestanding -Wno-unused-parameter
 CFLAGS += -I $(BASE)FreeRTOS/Source/portable/GCC/RaspberryPi/
