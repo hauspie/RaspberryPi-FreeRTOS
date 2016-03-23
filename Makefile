@@ -37,3 +37,9 @@ emu: kernel.elf
 .PHONY: debug-emu
 debug-emu: kernel.elf
 	$(QEMU_DEBUG_LINE) $<
+
+.PHONY: deploy
+
+deploy: kernel.elf kernel.img
+	cp kernel.elf ../../data/guest.elf
+	cp kernel.img ../../data/guest.bin
