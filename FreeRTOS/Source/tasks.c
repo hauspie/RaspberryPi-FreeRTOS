@@ -233,7 +233,7 @@ PRIVILEGED_DATA static portTickType xNextTaskUnblockTime						= ( portTickType )
  * executing task has been rescheduled.
  */
 #define prvAddTaskToReadyQueue( pxTCB )																					\
-	traceMOVED_TASK_TO_READY_STATE( pxTCB )																				\
+   traceMOVED_TASK_TO_READY_STATE( pxTCB );                             \
 	if( ( pxTCB )->uxPriority > uxTopReadyPriority )																	\
 	{																													\
 		uxTopReadyPriority = ( pxTCB )->uxPriority;																		\
@@ -2177,13 +2177,13 @@ tskTCB *pxNewTCB;
 			/* Just to help debugging. */
 			memset( pxNewTCB->pxStack, ( int ) tskSTACK_FILL_BYTE, ( size_t ) usStackDepth * sizeof( portSTACK_TYPE ) );
 		}
+#if (configBLUETHUNDER == 1)
+                pxNewTCB->pTraceEvent 		= NULL;
+                pxNewTCB->pTraceEventMin 	= NULL;
+                pxNewTCB->pTraceEventMax 	= NULL;
+#endif
 	}
 
-#if (configBLUETHUNDER == 1)
-	pxNewTCB->pTraceEvent 		= NULL;
-	pxNewTCB->pTraceEventMin 	= NULL;
-	pxNewTCB->pTraceEventMax 	= NULL;
-#endif
 
 	return pxNewTCB;
 }
