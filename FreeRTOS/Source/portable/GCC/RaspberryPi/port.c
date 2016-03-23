@@ -12,7 +12,6 @@
 #define portINSTRUCTION_SIZE					( ( portSTACK_TYPE ) 4 )
 #define portNO_CRITICAL_SECTION_NESTING			( ( portSTACK_TYPE ) 0 )
 
-#define portTIMER_PRESCALE 						( ( unsigned long ) 0xF9 )
 
 
 /* Constants required to setup the VIC for the tick ISR. */
@@ -167,27 +166,23 @@ void vTickISR(int nIRQ, void *pParam )
 /*
  * Setup the timer 0 to generate the tick interrupts at the required frequency.
  */
+#define configTIMER_CLOCK_HZ                    (configCPU_CLOCK_HZ >> 7) /* prescale is set to 128, so TIMER is clock/128) */
+#define portTIMER_PRESCALE                      ( 127 ) /* 127 is 128 - 1 because of the +1 coding of divider register */
+
 static void prvSetupTimerInterrupt( void )
 {
 	unsigned long ulCompareMatch;
 	
 
 	/* Calculate the match value required for our wanted tick rate. */
-	ulCompareMatch = 1000000 / configTICK_RATE_HZ;
+	ulCompareMatch = configTIMER_CLOCK_HZ / configTICK_RATE_HZ;
 
-	/* Protect against divide by zero.  Using an if() statement still results
-	in a warning - hence the #if. */
-	#if portPRESCALE_VALUE != 0
-	{
-		ulCompareMatch /= ( portPRESCALE_VALUE + 1 );
-	}
-	#endif
 
 	DisableInterrupts();
 
 	pRegs->CTL = 0x003E0000;
-	pRegs->LOD = 1000 - 1;
-	pRegs->RLD = 1000 - 1;
+	pRegs->LOD = ulCompareMatch;
+	pRegs->RLD = ulCompareMatch;
 	pRegs->DIV = portTIMER_PRESCALE;
 	pRegs->CLI = 0;
 	pRegs->CTL = 0x003E00A2;
