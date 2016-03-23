@@ -7,7 +7,7 @@
 #include <Drivers/interrupts.h>
 
 /* Constants required to setup the task context. */
-#define portINITIAL_SPSR						( ( portSTACK_TYPE ) 0x1f ) /* System mode, ARM mode, interrupts enabled. */
+#define portINITIAL_SPSR						( ( portSTACK_TYPE ) 0x10 ) /* User mode, ARM mode, interrupts enabled. */
 #define portTHUMB_MODE_BIT						( ( portSTACK_TYPE ) 0x20 )
 #define portINSTRUCTION_SIZE					( ( portSTACK_TYPE ) 4 )
 #define portNO_CRITICAL_SECTION_NESTING			( ( portSTACK_TYPE ) 0 )
