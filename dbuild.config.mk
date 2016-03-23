@@ -8,7 +8,7 @@ CFLAGS += -I $(BASE)FreeRTOS/Source/include/
 CFLAGS += -I $(BASE)Platform/$(PLATFORM)/
 CFLAGS += -O0 -g
 
-LDFLAGS += -lc -nostdlib
+LDFLAGS += -nostdlib -lc -lgcc
 
 QEMU=qemu-system-arm
 QEMU_RASP_OPTIONS=-cpu arm1176 -m 512 -M raspi

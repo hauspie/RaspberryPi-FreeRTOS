@@ -4,12 +4,19 @@
 #include "Drivers/interrupts.h"
 #include "Drivers/uart.h"
 
+#include "printf.h"
+
+void putchar(int c)
+{
+   uartPutC(c);
+}
+
 void task1(void *pParam) {
 
 	int i = 0;
 	while(1) {
 		i++;
-                uartPutS("Task 1\n");
+                printf("Task 1\n");
 		vTaskDelay(200);
 	}
 }
@@ -20,7 +27,7 @@ void task2(void *pParam) {
 	while(1) {
 		i++;
 		vTaskDelay(100);
-                uartPutS("Task 2\n");
+                printf("Task 2\n");
 		vTaskDelay(100);
 	}
 }

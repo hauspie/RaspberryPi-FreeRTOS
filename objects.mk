@@ -34,4 +34,10 @@ OBJECTS += $(BUILD_DIR)Platform/$(PLATFORM)/startup.o
 #
 #	Main Test Program
 #
+
 OBJECTS += $(BUILD_DIR)$(SAMPLE)/main.o
+OBJECTS += $(BUILD_DIR)$(SAMPLE)/aes.o
+OBJECTS += $(BUILD_DIR)$(SAMPLE)/printf.o
+OBJECTS += $(BUILD_DIR)$(SAMPLE)/cpuidc.o
+OBJECTS += $(BUILD_DIR)$(SAMPLE)/dhry_1.o
+OBJECTS += $(BUILD_DIR)$(SAMPLE)/dhry_2.o
