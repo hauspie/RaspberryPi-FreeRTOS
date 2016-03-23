@@ -36,6 +36,7 @@ OBJECTS += $(BUILD_DIR)Platform/$(PLATFORM)/startup.o
 #
 
 OBJECTS += $(BUILD_DIR)$(SAMPLE)/main.o
+OBJECTS += $(BUILD_DIR)$(SAMPLE)/tasks.o
 OBJECTS += $(BUILD_DIR)$(SAMPLE)/aes.o
 OBJECTS += $(BUILD_DIR)$(SAMPLE)/printf.o
 OBJECTS += $(BUILD_DIR)$(SAMPLE)/cpuidc.o

@@ -1,7 +1,6 @@
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
-
 #define configUSE_PREEMPTION                    1
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 0
 #define configUSE_TICKLESS_IDLE                 0
@@ -41,13 +40,13 @@
 #define configMAX_CO_ROUTINE_PRIORITIES         1
 
 /* Software timer related definitions. */
-#define configUSE_TIMERS                        1
-#define configTIMER_TASK_PRIORITY               3
-#define configTIMER_QUEUE_LENGTH                10
-#define configTIMER_TASK_STACK_DEPTH            configMINIMAL_STACK_SIZE
+/* #define configUSE_TIMERS                        1 */
+/* #define configTIMER_TASK_PRIORITY               3 */
+/* #define configTIMER_QUEUE_LENGTH                10 */
+/* #define configTIMER_TASK_STACK_DEPTH            configMINIMAL_STACK_SIZE */
 
 /* Define to trap errors during development. */
-#define configASSERT( ( x ) )     if( ( x ) == 0 ) vAssertCalled( __FILE__, __LINE__ )
+#define TRACE_HEADER "FreeRTOS: "
 
 /* FreeRTOS MPU specific definitions. */
 #define configINCLUDE_APPLICATION_DEFINED_PRIVILEGED_FUNCTIONS 0
@@ -71,5 +70,13 @@
 #define INCLUDE_xTimerPendFunctionCall          0
 
 /* A header file that defines trace macro can be included here. */
+//#define TRACE
 
+#ifdef TRACE
+#define TRACE_HEADER "FreeRTOS: "
+#define traceMOVED_TASK_TO_READY_STATE(TCB) printf(TRACE_HEADER"Task %p ready\n", (TCB))
+#define traceTASK_CREATE(TCB) printf(TRACE_HEADER"Creating task %p\n", (TCB))
+#define traceTASK_CREATE_FAILED() printf(TRACE_HEADER"Failed to create task\n")
+#define traceTASK_DELETE(TCB) printf(TRACE_HEADER"Deleting task %p\n", (TCB))
+#endif
 #endif /* FREERTOS_CONFIG_H */

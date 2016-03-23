@@ -3,9 +3,10 @@ PLATFORM:=RaspberryPi
 SAMPLE:=Benchmarks
 
 CFLAGS += -march=armv6z -Wall -Wextra -ffreestanding -Wno-unused-parameter
+CFLAGS += -I $(BASE)$(SAMPLE)
+CFLAGS += -I $(BASE)Platform/$(PLATFORM)/
 CFLAGS += -I $(BASE)FreeRTOS/Source/portable/GCC/RaspberryPi/
 CFLAGS += -I $(BASE)FreeRTOS/Source/include/
-CFLAGS += -I $(BASE)Platform/$(PLATFORM)/
 CFLAGS += -O0 -g
 
 LDFLAGS += -nostdlib -lc -lgcc

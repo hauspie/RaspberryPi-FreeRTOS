@@ -6,31 +6,17 @@
 
 #include "printf.h"
 
+extern void generic_user_task(void *pParam);
+extern void bench_task(void *pParam);
+
+
+
+/* For printf */
 void putchar(int c)
 {
    uartPutC(c);
 }
 
-void task1(void *pParam) {
-
-	int i = 0;
-	while(1) {
-		i++;
-                printf("Task 1\n");
-		vTaskDelay(200);
-	}
-}
-
-void task2(void *pParam) {
-
-	int i = 0;
-	while(1) {
-		i++;
-		vTaskDelay(100);
-                printf("Task 2\n");
-		vTaskDelay(100);
-	}
-}
 
 
 /**
@@ -45,8 +31,11 @@ void main(void) {
 	InitInterruptController();
 
 
-	xTaskCreate(task1, (signed char*)"Task1", 128, NULL, 0, NULL);
-	xTaskCreate(task2, (signed char*)"Task2", 128, NULL, 0, NULL);
+	xTaskCreate(generic_user_task, (signed char*)"Task1", 128, NULL, 0, NULL);
+	xTaskCreate(generic_user_task, (signed char*)"Task2", 128, NULL, 0, NULL);
+	xTaskCreate(generic_user_task, (signed char*)"Task3", 128, NULL, 0, NULL);
+	xTaskCreate(generic_user_task, (signed char*)"Task4", 128, NULL, 0, NULL);
+	xTaskCreate(bench_task, (signed char*)"Bench", 1024, NULL, 0, NULL);
 
 	vTaskStartScheduler();
 
