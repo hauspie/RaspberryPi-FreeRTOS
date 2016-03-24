@@ -5,6 +5,7 @@
 .extern vPortYieldProcessor
 .extern DisableInterrupts
 .extern main
+.extern _exception_vector_start
 	.section .init
 	.globl _start
 ;; 
@@ -36,7 +37,7 @@ fiq_handler:        .word fiq
 reset:
 	;@	In the reset handler, we need to copy our interrupt vector table to 0x0000, its currently at 0x8000
 
-	mov r0,#0x18000								;@ Store the source pointer
+    ldr r0, =_exception_vector_start
     mov r1,#0x0000								;@ Store the destination pointer.
 
 	;@	Here we copy the branching instructions

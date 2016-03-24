@@ -7,8 +7,8 @@
 MEMORY
 {
 	RESERVED	(r)	: ORIGIN = 0x00000000, LENGTH = 32K
-	INIT_RAM	(rwx)	: ORIGIN = 0x00018000, LENGTH = 32K
-	RAM		(rwx)	: ORIGIN = 0x00020000, LENGTH = 128M
+	INIT_RAM	(rwx)	: ORIGIN = 0x02008000, LENGTH = 32K
+	RAM		(rwx)	: ORIGIN = 0x02020000, LENGTH = 128M
 }
 
 ENTRY(_start)
@@ -23,6 +23,7 @@ SECTIONS {
 	 *
 	 */
 	.init : {
+                _exception_vector_start = .;
 		KEEP(*(.init))
 	} > INIT_RAM = 0
 
